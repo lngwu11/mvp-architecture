@@ -1,4 +1,4 @@
-package com.lngwu.demo;
+package com.lngwu.demo.mvp;
 
 import android.content.Context;
 import android.graphics.Color;
