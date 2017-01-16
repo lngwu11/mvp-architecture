@@ -28,7 +28,7 @@ public class MainActivity extends AppCompatActivity implements LoginContract.Vie
             }
         }
     };
-    private LoginPresenter loginPresenter;
+    private LoginPresenter mLoginPresenter;
 
     @Override
     protected void onCreate(Bundle savedInstanceState) {
@@ -36,13 +36,13 @@ public class MainActivity extends AppCompatActivity implements LoginContract.Vie
         setContentView(R.layout.activity_main);
         mContext = this;
 
-        loginPresenter = new LoginPresenter(this);
+        mLoginPresenter = new LoginPresenter(this);
 
         Button btnLogin = (Button) findViewById(R.id.btn_login);
         btnLogin.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View view) {
-                loginPresenter.login(mContext);
+                mLoginPresenter.login(mContext);
             }
         });
     }

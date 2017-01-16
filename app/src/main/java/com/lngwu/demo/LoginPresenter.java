@@ -11,21 +11,21 @@ import cc.cloudist.acplibrary.ACProgressFlower;
  */
 
 public class LoginPresenter implements LoginContract.Presenter {
-    LoginContract.View view;
+    private LoginContract.View mView;
 
     public LoginPresenter(LoginContract.View view) {
-        this.view = view;
+        mView = view;
         view.setPresenter(this);
     }
 
     @Override
     public void login(Context context) {
-        ACProgressFlower.Builder builder = new ACProgressFlower.Builder(context);
-        builder.direction(ACProgressConstant.DIRECT_CLOCKWISE);
-        builder.themeColor(Color.WHITE);
-        builder.fadeColor(Color.GRAY);
-        builder.text("正在登录...");
-        final ACProgressFlower progressFlower = builder.build();
+        final ACProgressFlower progressFlower = new ACProgressFlower.Builder(context)
+                .direction(ACProgressConstant.DIRECT_CLOCKWISE)
+                .themeColor(Color.WHITE)
+                .fadeColor(Color.GRAY)
+                .text("正在登录...")
+                .build();
         progressFlower.show();
 
         // 模拟登录耗时
@@ -37,7 +37,7 @@ public class LoginPresenter implements LoginContract.Presenter {
                 } catch (InterruptedException e) {
                     e.printStackTrace();
                 }
-                view.loginSuccess();
+                mView.loginSuccess();
                 progressFlower.cancel();
             }
         }).start();
